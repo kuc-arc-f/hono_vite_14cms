@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
+import { basicAuth } from 'hono/basic-auth'
 import type { Database } from '@cloudflare/d1'
-//import { renderer } from './renderer';
 interface Env {
   DB: Database
 }
@@ -12,6 +12,7 @@ import postRouter from './routes/posts';
 //pages
 import {Layout} from './pages/layout';
 import Top from './pages/Top';
+import {PostShow} from './pages/posts/show/App';
 import Test1 from './pages/test/App';
 import Test3 from './pages/test3/App';
 import Test4 from './pages/test4/App';
@@ -26,12 +27,31 @@ import {AdminPostIndex} from './pages/admin/posts/App';
 import {AdminPostCreate} from './pages/admin/posts/create/App';
 import {AdminPostShow} from './pages/admin/posts/show/App';
 import {AdminPostEdit} from './pages/admin/posts/edit/App';
-
+//basicAuth
+app.use(
+  "/admin/*",
+  basicAuth({
+    username: "test",
+    password: "1111",
+  })
+);
 //
-app.get('/', (c) => {
+app.get('/', async(c) => {
+  let page = c.req.query('page');
+  if(!page) { page = '1';}
+console.log("page=", page);
+  const items = await postRouter.get_list_page(c, c.env.DB, page);
+console.log(items);
   const messages = ['Good Morning', 'Good Evening', 'Good Night']
-  return c.html(<Top messages={messages} />)
+  return c.html(<Top items={items} page={page} />)
 })
+//
+app.get('/posts/:id', async (c) => { 
+  const {id} = c.req.param();
+  const item = await postRouter.get(c, c.env.DB, id);
+console.log("id=", id);
+  return c.html(<PostShow item={item} id={Number(id)} />)
+});
 /* test */
 app.get('/test1', async (c) => { 
   return c.render(<Test1 items={[]} />);
