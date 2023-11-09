@@ -19,6 +19,7 @@ export const AdminPostCreate: FC = (props) => {
                 <textarea id="content" name="content"
                 class="input_textarea"
                  placeholder="" required
+                 rows={15}
                 ></textarea>
             </div>
             <hr />

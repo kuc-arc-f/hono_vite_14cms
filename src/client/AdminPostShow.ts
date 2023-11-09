@@ -1,6 +1,7 @@
 
+import { marked } from 'marked';
 //@ts-ignore
-console.log("#AdminPostShow.client.ts", TaskItemId);
+//console.log("#AdminPostShow.client.ts", TaskItemId);
 //
 const AdminPostShow = {
     /**
@@ -9,14 +10,14 @@ const AdminPostShow = {
      *
      * @return
      */  
-    delete : async function()
+    delete : async function(id: string)
     {
         try{
             let ret = false;
             const item = {
                 api_key: "",
                 //@ts-ignore
-                id: Number(TaskItemId),
+                id: Number(id),
             }
 //console.log("title=", titleValue);
             const body = JSON.stringify(item);		
@@ -53,16 +54,26 @@ console.log(json);
     {
         try{
             console.log("#startProc");
+            //id
+            const id = (<HTMLInputElement>document.querySelector("#item_id")).value;
+console.log("id=", id);
             //btn
             const button = document.querySelector('#btn_delete') as HTMLElement;
             button.addEventListener('click', async () => {
 //console.log("btn_delete=");
-                const result = await this.delete();
+                const result = await this.delete(id);
 console.log("result=", result);
                 if(result === true) {
                     window.location.href = '/admin/posts';
                 }
-            }); 
+            });
+            const md = (<HTMLInputElement>document.querySelector("#item_content")).value;
+console.log(md);
+            const content = marked.parse(md);
+            const contentElem = (<HTMLInputElement>document.querySelector("#post_item"));
+            contentElem.innerHTML = content;
+            /*
+            */
         } catch (e) {
             console.error(e);
         }    

@@ -19,8 +19,8 @@ console.log(props.items);
   return (
   <Layout>
     <div>
-      <h1 class="text-4xl font-bold">Hello Hono , v14cms</h1>
-      <hr />
+      <h1 class="text-4xl font-bold">Blogs</h1>
+      <hr class="my-4" />
       <ul>
       {props.items.map((item) => {
         return (

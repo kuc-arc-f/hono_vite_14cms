@@ -2,10 +2,12 @@ import type { FC } from 'hono/jsx'
 import { html } from 'hono/html'
 //import {Layout} from '../../layout';
 import {AdminLayout} from '../../../layout/AdminLayout';
+import { marked } from 'marked';
 //
 export const AdminPostShow: FC<{ item: any, id: number }> = (props: { item: any, id: number }) => {
 console.log("#taskShow");
 console.log(props);
+    const content = marked.parse(props.item.content);
     const timeStamp = Date.now();
     return (
     <AdminLayout title="AdminPostShow">
@@ -17,20 +19,22 @@ console.log(props);
             <p>id: {props.item.id}, {props.item.createdAt}</p>
             <hr class="my-2" />
             <p>Content:</p>
-            <pre>{props.item.content}</pre>
+            <div id="post_item"></div>
+            <input class="d-none" type="text" value={props.item.id} id="item_id" />
+            <input class="d-none" type="text" value={content} id="item_content" />
             <hr />
             {html`<script>let TaskItemId = ${props.id};
             </script>`} 
             <button id="btn_delete" class="btn-red ms-2 my-2">Delete</button>
             {import.meta.env.PROD ? (
-                <script  src="/static/AdminPostShow.js"></script>
+                <script type="module" src="/static/AdminPostShow.js"></script>
             ) : (
-                <script  src="/src/client/AdminPostShow.ts"></script>
+                <script type="module" src="/src/client/AdminPostShow.ts"></script>
             )}
         </div>
     </AdminLayout>
 )
 }
 /*
-{html`<script type="text/babel" src="/js/posts/delete.js?${timeStamp}"></script>`}
+<pre>{props.item.content}</pre>
 */
