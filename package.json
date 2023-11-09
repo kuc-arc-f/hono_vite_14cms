@@ -9,6 +9,7 @@
   "dependencies": {
     "hono": "^3.9.0",
     "htm": "^3.1.1",
+    "marked": "^9.1.5",
     "preact": "^10.18.1"
   },
   "devDependencies": {

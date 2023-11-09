@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => {
             './src/client/TaskEdit.ts',
             './src/client/AdminPostCreate.ts',
             './src/client/AdminPostShow.ts',
+            './src/client/AdminPostEdit.ts',
           ],
           formats: ['es'],
           fileName: '[name]',

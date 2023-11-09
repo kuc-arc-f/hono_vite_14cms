@@ -38,8 +38,11 @@ console.log(props.item);
             </script>`
             } 
             <button id="btn_delete" class="btn-red ms-2 my-2">Delete</button>
-            {html`<script src="/js/posts/edit.js?${timeStamp}"></script>`}
-            {html`<script type="text/babel" src="/js/posts/delete.js?${timeStamp}"></script>`}
+            {import.meta.env.PROD ? (
+                <script  type="module" src="/static/AdminPostEdit.js"></script>
+            ) : (
+                <script type="module" src="/src/client/AdminPostEdit.ts"></script>
+            )}
         </div>
     </AdminLayout>
     )
