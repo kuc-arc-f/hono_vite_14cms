@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => {
             './src/client/AdminPostCreate.ts',
             './src/client/AdminPostShow.ts',
             './src/client/AdminPostEdit.ts',
+            './src/client/PostShow.ts',
           ],
           formats: ['es'],
           fileName: '[name]',

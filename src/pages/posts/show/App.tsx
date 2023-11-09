@@ -2,10 +2,12 @@ import type { FC } from 'hono/jsx'
 import { html } from 'hono/html'
 import {Layout} from '../../layout';
 //import {AdminLayout} from '../../../layout/AdminLayout';
+import { marked } from 'marked';
 //
 export const PostShow: FC<{ item: any, id: number }> = (props: { item: any, id: number }) => {
 console.log("#taskShow");
 console.log(props);
+    const content = marked.parse(props.item.content);
     const timeStamp = Date.now();
     return (
     <Layout title="AdminPostShow">
@@ -17,13 +19,21 @@ console.log(props);
             <p>id: {props.item.id}, {props.item.createdAt}</p>
             <hr />
             <p>Content:</p>
-            <pre>{props.item.content}</pre>
+            <div id="post_item"></div>
+            <pre class="d-none">{props.item.content}</pre>
+            <input class="d-none" type="text" value={props.item.id} id="item_id" />
+            <input class="d-none" type="text" value={content} id="item_content" />
             <hr />
             {html`
             <script type="text/babel">
             let TaskItemId = ${props.id};
             </script>`
-            } 
+            }
+            {import.meta.env.PROD ? (
+                <script type="module" src="/static/PostShow.js"></script>
+            ) : (
+                <script type="module" src="/src/client/PostShow.ts"></script>
+            )} 
         </div>
     </Layout>
 )
