@@ -1,6 +1,5 @@
 import type { FC } from 'hono/jsx'
 import { html } from 'hono/html'
-//import {Layout} from '../../layout';
 import {AdminLayout} from '../../../layout/AdminLayout';
 import { marked } from 'marked';
 //
@@ -12,6 +11,10 @@ console.log(props);
     return (
     <AdminLayout title="AdminPostShow">
         <div>
+            {/*CSS */}
+            {html`
+            <link href="/static/postshow.css" rel="stylesheet" />
+            `} 
             <a href="/admin/posts" class="btn-outline-purple ms-2 my-2">back</a>
             <hr class="my-4" />
             <div id="root"></div>

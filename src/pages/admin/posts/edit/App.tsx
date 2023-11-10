@@ -25,8 +25,9 @@ console.log(props.item);
             <hr class="my-2" />
             <label  class="text-2xl block text-gray-700 font-bold mb-2">Content</label>
             <textarea id="content" name="content"
-            class="border border-gray-400 rounded-md px-3 py-2 w-full h-32 resize-none focus:outline-none focus:border-blue-500"
-            placeholder="" required
+            class="input_textarea"
+            placeholder="markdown input, please" required
+            rows={15}
             >{props.item.content}</textarea>            
             <hr class="my-2" />
             <button id="btn_save" class="btn-purple ms-2 my-2">Save</button>

@@ -18,7 +18,7 @@ export const AdminPostCreate: FC = (props) => {
                 <label  class="text-2xl block text-gray-700 font-bold mb-2">Content</label>
                 <textarea id="content" name="content"
                 class="input_textarea"
-                 placeholder="" required
+                 placeholder="markdown input, please" required
                  rows={15}
                 ></textarea>
             </div>
