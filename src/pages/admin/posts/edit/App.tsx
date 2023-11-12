@@ -2,6 +2,7 @@ import type { FC } from 'hono/jsx'
 import { html } from 'hono/html'
 //import {Layout} from '../../layout';
 import {AdminLayout} from '../../../layout/AdminLayout';
+import ShowModal from './ShowModal';
 //
 export const AdminPostEdit: FC<{ item: any, id: number }> = (props: { item: any, id: number }) => {
 console.log("#taskShow");
@@ -9,10 +10,16 @@ console.log(props.item);
     const timeStamp = Date.now();
     return (
     <AdminLayout title="PostsEdit">
+        {/*CSS */}
+        {html`
+        <link href="/static/postshow.css" rel="stylesheet" />
+        `} 
         <div>
             <a href="/admin/posts" class="btn-outline-purple ms-2 my-2">back</a>
             <hr class="my-4" />
             <h1 class="text-4xl font-bold">Edit</h1>
+            <button id="show_modal_btn" >[ preview ]</button>
+            <hr class="my-2" />
             <p>ID: {props.item.id}
             , {props.item.createdAt}
             </p>
@@ -33,6 +40,7 @@ console.log(props.item);
             <button id="btn_save" class="btn-purple ms-2 my-2">Save</button>
             <hr class="my-2" />
             <div id="root"></div>
+            <ShowModal />
             {html`
             <script>
             let TaskItemId = ${props.item.id};

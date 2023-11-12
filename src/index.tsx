@@ -14,9 +14,7 @@ import {Layout} from './pages/layout';
 import Top from './pages/Top';
 import {PostShow} from './pages/posts/show/App';
 import Test1 from './pages/test/App';
-import Test3 from './pages/test3/App';
-import Test4 from './pages/test4/App';
-import Test5 from './pages/test5/App';
+import Test11 from './pages/test/test11/App';
 /* tasks */
 import TaskIndex from './pages/tasks/App';
 import TaskShow from './pages/tasks/show/App';
@@ -56,16 +54,8 @@ console.log("id=", id);
 app.get('/test1', async (c) => { 
   return c.render(<Test1 items={[]} />);
 });
-app.get('/test3', async (c) => { 
-  return c.html(<Test3 items={[]} />);
-});
-app.get('/test4', async (c) => { 
-  const items = await testRouter.get_list(c, c.env.DB);
-console.log(items);
-  return c.html(<Test4 items={items} />);
-});
-app.get('/test5', async (c) => { 
-  return c.html(<Test5 />);
+app.get('/test11', async (c) => { 
+  return c.html(<Test11 items={[]} />);
 });
 /* tasks */
 app.get('/tasks', async (c) => { 

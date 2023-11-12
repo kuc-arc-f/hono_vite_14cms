@@ -1,3 +1,5 @@
+import { marked } from 'marked';
+import MicroModal from 'micromodal';
 
 //@ts-ignore
 console.log("#AdminPostEdit.client.ts", TaskItemId);
@@ -95,6 +97,32 @@ console.log(json);
         }
     },
     /**
+     * startProc
+     * @param
+     *
+     * @return
+     */   
+    showProc:function(){
+        let contentValue = "";
+        const content = document.querySelector('#content') as HTMLInputElement;
+        if(content) {
+            contentValue = content?.value;
+        }
+        //console.log("contentValue=", contentValue);
+        const pre_content_text = document.querySelector('#show_modal_content') as HTMLElement;
+        const contentHTML = marked.parse(contentValue);
+        pre_content_text.innerHTML = contentHTML;
+        //modal-1-title
+        let titleValue = "";
+        const title = document.querySelector('#title') as HTMLInputElement;
+        if(title) {
+            titleValue = title?.value;
+        }
+        const modalTitle = document.querySelector('#modal-1-title') as HTMLElement
+        modalTitle.innerHTML = titleValue;
+        MicroModal.show('modal-1');
+    },
+    /**
      *
      * @param
      *
@@ -123,6 +151,11 @@ console.log("result=", result);
                 if(result === true) {
                     window.location.href = '/admin/posts';
                 }
+            });
+            const shoWButton = document.querySelector('#show_modal_btn') as HTMLElement;
+            shoWButton?.addEventListener('click', async () => {
+console.log("show_modal_btn=");
+                this.showProc();
             }); 
         } catch (e) {
             console.error(e);
