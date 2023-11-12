@@ -16,9 +16,16 @@ console.log(props.item);
         `} 
         <div>
             <a href="/admin/posts" class="btn-outline-purple ms-2 my-2">back</a>
-            <hr class="my-4" />
-            <h1 class="text-4xl font-bold">Edit</h1>
-            <button id="show_modal_btn" >[ preview ]</button>
+            <hr class="my-2" />
+            <div class="flex flex-row">
+                <div class="flex-1 text-start p-0 m-1">
+                    <h1 class="text-4xl font-bold">Edit</h1>
+                </div>
+                <div class="flex-1 text-center p-0 m-1">
+                    <button class="btn-outline-purple" id="show_modal_btn" >Preview</button>
+                </div>
+            </div>
+            
             <hr class="my-2" />
             <p>ID: {props.item.id}
             , {props.item.createdAt}
