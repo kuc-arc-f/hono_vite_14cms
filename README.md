@@ -6,7 +6,7 @@
 
  date    : 2023/11/04
 
- update  : 2023/11/11   
+ update  : 2023/11/11
 
 ***
 ### Summary
@@ -18,6 +18,7 @@ hono + vite + pages + D1 + preact.js, CMS Sample
 ***
 ### blog 
 
+https://zenn.dev/knaka0209/scraps/f8f6156a8f4609
 
 ***
 
